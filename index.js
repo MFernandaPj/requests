@@ -13,6 +13,22 @@ app.get('/:user/:password',(req, res) => {
 res.json({msg:'Error en el usuario o la contraseña'})
 })
 
+//http://localhost:3000/login?user=Fer&password=123
+app.get('/login',(req,res)=>{ //endponit
+    const {user, password} = req.query
+    if(!user || password){
+        res.status(400).json({
+            msg:'You need to provide <user> and <password> parameters'
+        })
+    }
+
+    if(user === 'Fer' && password === '123'){
+    res.json({msg: 'Inicio de sesion exitosa'})
+    return
+}
+res.json({msg:'Error en el usuario o la contraseña'})
+})
+
 
 app.post('/',(req,res) => {res.json({msg:'HOLA POST'})})
 app.put('/',(req,res) => {res.json({msg:'HOLA PUT'})})
